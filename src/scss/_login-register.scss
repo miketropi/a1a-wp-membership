@@ -1,0 +1,61 @@
+.a1am-login-container {
+  margin-bottom: 2em;
+
+  .heading-login-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+
+    .button {
+      opacity: .5;
+
+      &.__active {
+        opacity: 1;
+        cursor: auto;
+      }
+    }
+  }
+
+  .a1am-login-forms {
+
+    .a1am-form-container {
+      display: none;
+      width: 500px;
+      max-width: 100%;
+      display: none;
+      margin: 0 auto;
+
+      &.__active {
+        display: block;
+      }
+    }
+  }
+  
+
+  form {
+    background-color: white !important;
+    padding: 2em;
+    border-radius: 16px;
+
+    p {
+      display: flex;
+      flex-wrap: wrap;
+
+      label {
+        width: 100%;
+        margin-bottom: 3px;
+        font-size: .9em;
+      }
+
+      input[type=text],
+      input[type=email],
+      input[type=number],
+      input[type=password],
+      textarea,
+      select {
+        width: 100%;
+      }
+    }
+  }
+}

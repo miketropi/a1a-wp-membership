@@ -1,0 +1,55 @@
+.a1a-membership-container {
+
+  input[type=text],
+  input[type=password],
+  input[type=number],
+  input[type=tel],
+  input[type=email],
+  textarea {
+    border: solid 1px #ccc;
+    padding: 1em;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .button {
+    background-color: var(--wp--preset--color--contrast);
+    border-radius: .33rem;
+    border-color: var(--wp--preset--color--contrast);
+    border-width: 0;
+    color: var(--wp--preset--color--base);
+    font-family: inherit;
+    font-size: var(--wp--preset--font-size--small);
+    font-style: normal;
+    font-weight: 500;
+    line-height: inherit;
+    padding-top: 0.6rem;
+    padding-right: 1rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--wp--preset--color--contrast-2);
+      border-color: var(--wp--preset--color--contrast-2);
+      color: var(--wp--preset--color--base);
+    }
+  }
+}
+
+.a1am-button-group {
+  letter-spacing: 0;
+  display: flex;
+
+  .button {
+
+    &:first-child {
+      border-radius: 0.33rem 0 0 0.33rem;
+    }
+
+    &:last-child {
+      border-radius: 0 0.33rem 0.33rem 0;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+.a1a-membership-container input[type=text],
+.a1a-membership-container input[type=password],
+.a1a-membership-container input[type=number],
+.a1a-membership-container input[type=tel],
+.a1a-membership-container input[type=email],
+.a1a-membership-container textarea {
+  border: solid 1px #ccc;
+  padding: 1em;
+  box-shadow: none;
+  outline: none;
+}
+.a1a-membership-container .button {
+  background-color: var(--wp--preset--color--contrast);
+  border-radius: 0.33rem;
+  border-color: var(--wp--preset--color--contrast);
+  border-width: 0;
+  color: var(--wp--preset--color--base);
+  font-family: inherit;
+  font-size: var(--wp--preset--font-size--small);
+  font-style: normal;
+  font-weight: 500;
+  line-height: inherit;
+  padding-top: 0.6rem;
+  padding-right: 1rem;
+  padding-bottom: 0.6rem;
+  padding-left: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.a1a-membership-container .button:hover {
+  background-color: var(--wp--preset--color--contrast-2);
+  border-color: var(--wp--preset--color--contrast-2);
+  color: var(--wp--preset--color--base);
+}
+
+.a1am-button-group {
+  letter-spacing: 0;
+  display: flex;
+}
+.a1am-button-group .button:first-child {
+  border-radius: 0.33rem 0 0 0.33rem;
+}
+.a1am-button-group .button:last-child {
+  border-radius: 0 0.33rem 0.33rem 0;
+}
+
+.a1am-login-container {
+  margin-bottom: 2em;
+}
+.a1am-login-container .heading-login-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+.a1am-login-container .heading-login-type .button {
+  opacity: 0.5;
+}
+.a1am-login-container .heading-login-type .button.__active {
+  opacity: 1;
+  cursor: auto;
+}
+.a1am-login-container .a1am-login-forms .a1am-form-container {
+  display: none;
+  width: 500px;
+  max-width: 100%;
+  display: none;
+  margin: 0 auto;
+}
+.a1am-login-container .a1am-login-forms .a1am-form-container.__active {
+  display: block;
+}
+.a1am-login-container form {
+  background-color: white !important;
+  padding: 2em;
+  border-radius: 16px;
+}
+.a1am-login-container form p {
+  display: flex;
+  flex-wrap: wrap;
+}
+.a1am-login-container form p label {
+  width: 100%;
+  margin-bottom: 3px;
+  font-size: 0.9em;
+}
+.a1am-login-container form p input[type=text],
+.a1am-login-container form p input[type=email],
+.a1am-login-container form p input[type=number],
+.a1am-login-container form p input[type=password],
+.a1am-login-container form p textarea,
+.a1am-login-container form p select {
+  width: 100%;
+}
