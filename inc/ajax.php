@@ -12,6 +12,6 @@ function a1am_user_login_ajax() {
 		'user_password' => $_POST['pwd'],
 		'remember'      => (isset($_POST['rememberme']) ? true : false),
 	);
-
-  wp_send_json(wp_signon($creds));
+	
+  wp_send_json(wp_signon());
 }

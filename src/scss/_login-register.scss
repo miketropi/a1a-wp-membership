@@ -1,6 +1,12 @@
 .a1am-login-container {
   margin-bottom: 2em;
 
+  .a1am-login-message {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
   .heading-login-type {
     display: flex;
     justify-content: center;
