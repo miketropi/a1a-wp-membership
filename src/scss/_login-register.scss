@@ -61,6 +61,7 @@
       textarea,
       select {
         width: 100%;
+        border-radius: $field-border-radius-base;
       }
     }
   }

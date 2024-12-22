@@ -121,4 +121,5 @@
 .a1am-login-container form p textarea,
 .a1am-login-container form p select {
   width: 100%;
+  border-radius: 4px;
 }
