@@ -71,6 +71,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               });
               return _context.abrupt("return");
             case 11:
+              if (!(res !== null && res !== void 0 && res.success && res.success == true)) {
+                _context.next = 16;
+                break;
+              }
+              $loginMessage.empty();
+              $loginMessage.append("<div class=\"a1a-message __type-success\">\n          <div class=\"message-inner\">".concat(res === null || res === void 0 ? void 0 : res.message, "</div>  \n          <span class=\"__close\" onClick=\"javascript: this.parentElement.remove()\" title=\"remove\">\u2715</span>\n        </div>"));
+              $('button[data-active-form=".wp_login_form"]').trigger('click');
+              return _context.abrupt("return");
+            case 16:
             case "end":
               return _context.stop();
           }

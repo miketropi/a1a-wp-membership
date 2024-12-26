@@ -28,6 +28,17 @@
         })
         return;
       }
+
+      if(res?.success && res.success == true ) {
+        $loginMessage.empty(); 
+        $loginMessage.append(`<div class="a1a-message __type-success">
+          <div class="message-inner">${ res?.message }</div>  
+          <span class="__close" onClick="javascript: this.parentElement.remove()" title="remove">✕</span>
+        </div>`);
+
+        $('button[data-active-form=".wp_login_form"]').trigger('click');
+        return;
+      }
     })
   }
   

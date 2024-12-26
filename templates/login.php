@@ -13,7 +13,9 @@
     </div>
   </div>
 
-  <div class="a1am-login-message"></div>
+  <div class="a1am-login-message">
+    <?php do_action( 'a1am:login_message' ); ?>
+  </div>
 
   <div class="a1am-login-forms">
     <div class="a1am-form-container wp_login_form __active">

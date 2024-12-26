@@ -46,7 +46,7 @@ function a1am_user_register_ajax() {
 		if ( is_int($user_id) ) {
 			$wp_user_object = new WP_User($user_id);
 			$wp_user_object->set_role('subscriber');
-			$verify_code = wp_generate_password(24);
+			$verify_code = wp_generate_password(24, false, false);
 			
 			update_field('a1a_user_verify_code', $verify_code, 'user_' . $user_id );
 			wp_update_user([
@@ -60,19 +60,19 @@ function a1am_user_register_ajax() {
 
 			wp_send_json( [
 				'success' => true,
-				'message' => 'Created user successfully.'
+				'message' => __('Successful: Tạo tài khoản thành công, vui lòng kiểm tra email và xác thực tài khoản!', 'a1a'),
 			] );
 		} else {
 			wp_send_json( [
 				'errors' => [
-					'error_message' => __('Error with wp_insert_user. No users were created.', 'a1a')
+					'error_message' => __('Error: with wp_insert_user. No users were created.', 'a1a')
 				]
 			] );
 		}
 	} else {
 		wp_send_json( [
 			'errors' => [
-				'error_message' => __('This email already exists. Nothing was done.', 'a1a')
+				'error_message' => __('Địa chỉ email đã tồn tại vui lòng sử dụng email khác.', 'a1a')
 			]
 		] );
 	}
