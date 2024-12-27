@@ -62,7 +62,15 @@ function a1am_user_verify_status_template($status) {
 function a1am_nav_main_menu_template() {
   $menus = a1am_nav_main_menu();
   set_query_var( 'main_menu', $menus );
-  load_template( A1AM_DIR . '/templates/main-menu.php', __return_false() );
+  load_template( A1AM_DIR . 'templates/main-menu.php', __return_false() );
+}
+
+function a1am_nav_courses_menu_template() {
+  $courses_menu = a1am_nav_courses_menu();
+  if(!$courses_menu) return;
+
+  set_query_var( 'courses_menu', $courses_menu );
+  load_template( A1AM_DIR . 'templates/courses-menu.php', __return_false() );
 }
 
 function a1am_dashboard_logo_template() {
@@ -72,6 +80,15 @@ function a1am_dashboard_logo_template() {
       <span>A1A</span>
       <?php _e('Course', 'a1a') ?>
     </a>
+  </div>
+  <?php
+}
+
+function a1am_dashboard_entry_template() {
+  $routes_base = get_query_var( 'routes_base' );
+  ?>
+  <div class="a1a-content-summary">
+    <?php load_template( A1AM_DIR . 'templates/page/'. $routes_base[0] .'.php', __return_false() ); ?>
   </div>
   <?php
 }

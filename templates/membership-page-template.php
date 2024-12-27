@@ -3,7 +3,7 @@
   <head>
     <?php wp_head(); ?>
   </head>
-  <body <?php body_class(); ?>>
+  <body <?php body_class( 'a1a-dashboard' ); ?>>
     <div id="PAGE">
       <div class="a1am-course-dashboard">
         <div class="a1am-course-dashboard__nav">

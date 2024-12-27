@@ -58,26 +58,60 @@ function a1am_verify_account($user_id, $verify_code) {
 }
 
 function a1am_nav_main_menu() {
+  $dashboard_page = get_field('a1a_dashboard_page', 'option');
+  $dashboard_root = '/' . $dashboard_page->post_name;
+
   return apply_filters( 'a1am:main_menu_hook', [
     'dashboard' => [
       'name' => 'Dashboard',
-      'url' => '',
+      'url' => $dashboard_root,
       'icon' => a1am_icon('home'),
     ],
-    'membership_package' => [
+    'membership' => [
       'name' => 'Gói thành viên',
-      'url' => '',
+      'url' => $dashboard_root . '/membership/',
       'icon' => a1am_icon('member_packages'),
     ],
     'notification' => [
       'name' => 'Thông báo',
-      'url' => '',
+      'url' => $dashboard_root . '/notification/',
       'icon' => a1am_icon('noti'),
     ],
     'support' =>[
       'name' => 'Hỗ trợ',
-      'url' => '',
+      'url' => $dashboard_root . '/support/',
       'icon' => a1am_icon('help'),
     ],
   ] );
+}
+
+function a1am_nav_courses_menu() {
+  $dashboard_page = get_field('a1a_dashboard_page', 'option');
+  $dashboard_root = '/' . $dashboard_page->post_name;
+
+  $terms = get_terms( array(
+    'taxonomy'   => 'course-tax',
+    'hide_empty' => false,
+  ) );
+
+  return array_map(function($t) use ($dashboard_root) {
+    $courses = get_posts([
+      'numberposts' => -1,
+      'post_type' => 'a1a-course',
+      'tax_query' => [
+        [
+          'taxonomy' => 'course-tax',
+          'field'    => 'slug',
+          'terms'    => [$t->slug],
+        ]
+      ]
+    ]);
+
+    $t->custom_url = $dashboard_root . '/section/' . $t->slug;
+    $t->__courses = array_map(function($c) use ($dashboard_root) {
+      $c->custom_url = $dashboard_root . '/course/' . $c->post_name;
+      return $c;
+    }, $courses);
+    return $t;
+  }, $terms);
 }

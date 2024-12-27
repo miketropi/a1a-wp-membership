@@ -8,8 +8,8 @@
 
   <div class="heading-login-type">
     <div class="a1am-button-group a1a1-switch-user-login-form">
-      <button type="button" data-active-form=".wp_login_form" class="button __active"><?php _e('Login', 'a1a-wp-membership'); ?></button>
-      <button type="button" data-active-form=".a1am_register_form_template" class="button"><?php _e('Register', 'a1a-wp-membership'); ?></button>
+      <button type="button" data-active-form=".wp_login_form" class="button __active"><?php _e('Đăng nhập', 'a1a-wp-membership'); ?></button>
+      <button type="button" data-active-form=".a1am_register_form_template" class="button"><?php _e('Tạo tài khoản', 'a1a-wp-membership'); ?></button>
     </div>
   </div>
 

@@ -1,3 +1,9 @@
+.a1a-dashboard input[type=text],
+.a1a-dashboard input[type=password],
+.a1a-dashboard input[type=number],
+.a1a-dashboard input[type=tel],
+.a1a-dashboard input[type=email],
+.a1a-dashboard textarea,
 .a1a-membership-container input[type=text],
 .a1a-membership-container input[type=password],
 .a1a-membership-container input[type=number],
@@ -9,6 +15,7 @@
   box-shadow: none;
   outline: none;
 }
+.a1a-dashboard .button,
 .a1a-membership-container .button {
   background-color: var(--wp--preset--color--contrast);
   border-radius: 0.33rem;
@@ -27,6 +34,7 @@
   text-decoration: none;
   cursor: pointer;
 }
+.a1a-dashboard .button:hover,
 .a1a-membership-container .button:hover {
   background-color: var(--wp--preset--color--contrast-2);
   border-color: var(--wp--preset--color--contrast-2);
@@ -70,6 +78,19 @@
   line-height: 0;
 }
 
+.a1am-dashboard-block-nav {
+  padding-top: 1em;
+}
+.a1am-dashboard-block-nav .heading-text {
+  font-size: 0.7em;
+  color: #002577;
+  margin: 0;
+  display: inline-block;
+  background: #fff;
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
 ul.a1am-menu {
   margin: 0;
   padding: 0;
@@ -100,10 +121,17 @@ ul.a1am-menu .a1am-menu__item > a .__text {
   line-height: normal;
 }
 
-ul.menu-main {
+ul.a1am-menu {
   padding: 1em 0;
   margin-bottom: 1em;
   border-bottom: solid 1px rgba(255, 255, 255, 0.15);
+}
+ul.a1am-menu--sub-menu {
+  padding-left: 1em;
+}
+
+.menu-courses > li.a1am-menu__item {
+  margin-bottom: 1em;
 }
 
 .a1am-course-dashboard {
@@ -119,6 +147,10 @@ ul.menu-main {
   top: 0;
   height: 100vh;
   overflow: auto;
+}
+.a1am-course-dashboard__entry {
+  background: #002577;
+  padding: 1.5em;
 }
 
 .a1a-course-dashboard-logo {
@@ -141,6 +173,51 @@ ul.menu-main {
   line-height: normal;
   margin-right: 4px;
   padding: 0px 6px;
+}
+
+.a1a-content-summary {
+  background: white;
+  padding: 1em 1.5em;
+  border-radius: 4px;
+  min-height: 100vh;
+}
+
+.a1a-login-screen {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100vh;
+}
+.a1a-login-screen .__image-preview {
+  position: relative;
+}
+.a1a-login-screen .__image-preview .__image-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.a1a-login-screen .__login-form {
+  padding: 0 2em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.a1a-login-screen .__login-form .__heading {
+  text-align: center;
+  width: 430px;
+  max-width: 100%;
+}
+.a1a-login-screen .__login-form .heading-text {
+  padding: 0 0 1em;
+  margin: 0;
+  padding: 0;
+  font-size: 1.4em;
+}
+.a1a-login-screen .__login-form .heading-text + p {
+  margin: 0.5em 0 2em;
 }
 
 .a1am-login-container {

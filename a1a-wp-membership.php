@@ -25,9 +25,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define('A1AM_DIR', plugin_dir_path( __FILE__ ));
 }
 
-add_action( 'admin_notices', 'a1aa_admin_notice_requirement' );
+require_once(A1AM_DIR . '/inc/custom-routes.php');
 
-function a1aa_admin_notice_requirement() {
+add_action( 'admin_notices', 'a1am_admin_notice_requirement' );
+
+function a1am_admin_notice_requirement() {
 	if(class_exists( 'ACF' )) return;
 	$class = 'notice notice-error';
 	$message = __( 'A1A Course requirement ACF Pro!!!', 'a1a' );
@@ -40,6 +42,7 @@ add_action( 'plugins_loaded', function() {
 		 * Inc 
 		 */
 		require_once(A1AM_DIR . '/inc/admin.php');
+		
 		require_once(A1AM_DIR . '/inc/shortcode.php');
 		require_once(A1AM_DIR . '/inc/helpers.php');
 		require_once(A1AM_DIR . '/inc/hooks.php');
