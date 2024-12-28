@@ -88,7 +88,9 @@ function a1am_dashboard_entry_template() {
   $routes_base = get_query_var( 'routes_base' );
   ?>
   <div class="a1a-content-summary">
-    <?php load_template( A1AM_DIR . 'templates/page/'. $routes_base[0] .'.php', __return_false() ); ?>
+    <div class="a1a-content-summary__inner">
+      <?php load_template( A1AM_DIR . 'templates/page/'. $routes_base[0] .'.php', __return_false() ); ?>
+    </div>
   </div>
   <?php
 }

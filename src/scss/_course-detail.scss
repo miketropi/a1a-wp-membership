@@ -1,0 +1,24 @@
+.a1a-content-summary {
+
+  .course-entry {
+    width: 800px;
+    max-width: 100%;
+    margin: 1em auto;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #eee;
+
+    .course-content {
+      p {
+        margin-bottom: 1.5em;
+      }
+
+      .wp-block-embed__wrapper {
+        iframe {
+          border-radius: $border-radius-base;
+          box-shadow: 0 5px 10px 0 rgba(1,1,1,.3);
+          background: black;
+        }
+      }
+    }
+  }
+}

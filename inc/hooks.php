@@ -39,6 +39,11 @@ function a1am_dashboard_custom_page_template($page_template) {
     }
     
     $routes_base = (isset($wp_query->query_vars['__page']) ? explode('/', $wp_query->query_vars['__page']) : ['dashboard']);
+    
+    if(a1am_routes_validate($routes_base) != true) {
+      return A1AM_DIR . '/templates/404.php';
+    }
+
     set_query_var( 'routes_base', $routes_base );
     $page_template = A1AM_DIR . '/templates/membership-page-template.php';
   }

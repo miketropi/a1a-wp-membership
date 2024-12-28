@@ -161,7 +161,12 @@ ul.a1am-menu {
 
 .a1am-course-dashboard {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px calc(100% - 300px);
+  max-width: 100%;
+
+  > * {
+    box-sizing: border-box;
+  }
 
   &__nav {
     background: $dashboard-nav-background-color;
@@ -206,7 +211,8 @@ ul.a1am-menu {
 
 .a1a-content-summary {
   background: white;
-  padding: 1em 1.5em;
+  padding: 1.5em;
   border-radius: $border-radius-base;
   min-height: 100vh;
+  box-sizing: border-box;
 }

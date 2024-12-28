@@ -115,3 +115,15 @@ function a1am_nav_courses_menu() {
     return $t;
   }, $terms);
 }
+
+function a1am_routes_validate($routes_base) {
+  list($page) = $routes_base;
+  $register_pages = a1am_nav_main_menu();
+  $pages_validate = array_merge(array_keys($register_pages), ['section', 'course']);
+  
+  if(in_array($page, $pages_validate)) {
+    return true;
+  } else {
+    return false;
+  }
+}

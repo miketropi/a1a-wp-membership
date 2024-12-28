@@ -57,7 +57,7 @@
   color: white;
   padding: 1em;
   margin-bottom: 0.5em;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   gap: 1em;
   justify-content: space-between;
@@ -136,7 +136,11 @@ ul.a1am-menu--sub-menu {
 
 .a1am-course-dashboard {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px calc(100% - 300px);
+  max-width: 100%;
+}
+.a1am-course-dashboard > * {
+  box-sizing: border-box;
 }
 .a1am-course-dashboard__nav {
   background: #002577;
@@ -177,9 +181,10 @@ ul.a1am-menu--sub-menu {
 
 .a1a-content-summary {
   background: white;
-  padding: 1em 1.5em;
-  border-radius: 4px;
+  padding: 1.5em;
+  border-radius: 8px;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .a1a-login-screen {
@@ -273,4 +278,72 @@ ul.a1am-menu--sub-menu {
 .a1am-login-container form p select {
   width: 100%;
   border-radius: 4px;
+}
+
+.a1a-content-summary .term-heading {
+  position: relative;
+  padding: 2em;
+  box-sizing: border-box;
+  margin-bottom: 3em;
+}
+.a1a-content-summary .term-heading .heading-entry {
+  position: relative;
+  z-index: 3;
+  color: white;
+  padding-top: 5em;
+  width: 580px;
+  max-width: 100%;
+}
+.a1a-content-summary .term-heading .heading-entry p {
+  padding: 0;
+  margin: 0;
+}
+.a1a-content-summary .term-heading .heading-entry h2.term-title {
+  color: white;
+  margin: 0 0 0.2em;
+}
+.a1a-content-summary .term-heading .banner-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.a1a-content-summary .term-heading .banner-layer::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  background: rgb(9, 0, 147);
+  background: linear-gradient(0deg, rgb(9, 0, 147) 0%, rgba(40, 126, 124, 0.5354516807) 51%, rgba(70, 252, 82, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#090093",endColorstr="#46fc52",GradientType=1);
+}
+.a1a-content-summary .term-content {
+  width: 800px;
+  max-width: 100%;
+  margin: 1em auto;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #eee;
+}
+
+.a1a-content-summary .course-entry {
+  width: 800px;
+  max-width: 100%;
+  margin: 1em auto;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #eee;
+}
+.a1a-content-summary .course-entry .course-content p {
+  margin-bottom: 1.5em;
+}
+.a1a-content-summary .course-entry .course-content .wp-block-embed__wrapper iframe {
+  border-radius: 8px;
+  box-shadow: 0 5px 10px 0 rgba(1, 1, 1, 0.3);
+  background: black;
 }
