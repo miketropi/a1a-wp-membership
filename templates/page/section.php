@@ -1,6 +1,10 @@
 <?php 
-list($page, $term_name) = get_query_var( 'routes_base' );
+@list($page, $term_name) = get_query_var( 'routes_base' );
+if(!$term_name) return;
+
 $term = get_term_by('slug', $term_name, 'course-tax');
+if(!$term) return;
+
 // print_r($term);
 $banner = get_field('banner', 'course-tax_' . $term->term_id); 
 $meta_content = get_field('meta_content', 'course-tax_' . $term->term_id);

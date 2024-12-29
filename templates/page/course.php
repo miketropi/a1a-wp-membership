@@ -1,5 +1,8 @@
 <?php 
-list($page, $post_slug) = get_query_var( 'routes_base' );
+@list($page, $post_slug) = get_query_var( 'routes_base' );
+if(!$post_slug) return;
+
+
 $the_query = new WP_Query( [
   'post_type' => 'a1a-course',
   'post_status' => 'publish',
