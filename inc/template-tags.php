@@ -94,3 +94,20 @@ function a1am_dashboard_entry_template() {
   </div>
   <?php
 }
+
+function a1am_dashboard_page_heading_template($heading_text, $description = '', $classes = '') {
+  ?>
+  <div class="a1a-heading-ss <?php echo $classes; ?>" style="background: url('<?php echo A1AM_URL . '/images/background-heading.jpg' ?>') no-repeat center center / cover, #fafafa">
+    <h2 class="a1a-heading-text"><?php echo $heading_text; ?></h2>
+    <?php echo wpautop($description); ?>
+  </div>
+  <?php
+}
+
+function a1am_nav_user_template() {
+  ?>
+  <div class="a1am-dashboard-block-user-nav">
+    User...!
+  </div>
+  <?php
+}

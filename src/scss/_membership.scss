@@ -1,0 +1,53 @@
+.membership-container {
+  
+}
+
+.a1a-package-register {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  box-sizing: border-box;
+
+  .a1a-package-item {
+    border: solid 1px #eee;
+    border-radius: $border-radius-base;
+    background: #fafafa;
+    padding-bottom: 1em;
+    
+    .banner {
+
+      img {
+        width: 100%;
+        border-radius: $border-radius-base;
+      }
+    }
+
+    .name, .desc, .__action {
+      padding: 0 1em;
+    }
+
+    .name {
+      font-weight: bold;
+      margin-top: .5em;
+      margin-bottom: .5em;
+      color: $dashboard-accent-color;
+    }
+
+    .__action {
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .desc {
+
+      p {
+        margin-top: 0;
+        opacity: .6;
+      }
+    }
+  }
+}

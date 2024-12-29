@@ -38,6 +38,7 @@ function a1am_dashboard_custom_page_template($page_template) {
       return A1AM_DIR . '/templates/login-page.php';
     }
     
+    add_filter('show_admin_bar', '__return_false');
     $routes_base = (isset($wp_query->query_vars['__page']) ? explode('/', $wp_query->query_vars['__page']) : ['dashboard']);
     
     if(a1am_routes_validate($routes_base) != true) {
@@ -53,6 +54,7 @@ function a1am_dashboard_custom_page_template($page_template) {
 add_action( 'a1am:dashboard__nav', 'a1am_dashboard_logo_template', 8 );
 add_action( 'a1am:dashboard__nav', 'a1am_nav_main_menu_template', 10 );
 add_action( 'a1am:dashboard__nav', 'a1am_nav_courses_menu_template', 15 );
+add_action( 'a1am:dashboard__nav', 'a1am_nav_user_template', 18 );
 
 // add_action( 'a1am:dashboard__entry', function() {
 //   print_r(get_query_var( 'routes_base' ));

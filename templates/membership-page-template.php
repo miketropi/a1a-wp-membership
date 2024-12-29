@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="margin-top: 0 !important;">
   <head>
     <?php wp_head(); ?>
   </head>

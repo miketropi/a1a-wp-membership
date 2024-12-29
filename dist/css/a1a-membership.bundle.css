@@ -1,3 +1,8 @@
+@import url(https://fonts.googleapis.com/css2?family=Playwrite+TZ:wght@100..400&display=swap);
+.a1a-dashboard .button.__primary {
+  background: #002577;
+}
+
 .a1a-dashboard input[type=text],
 .a1a-dashboard input[type=password],
 .a1a-dashboard input[type=number],
@@ -187,6 +192,33 @@ ul.a1am-menu--sub-menu {
   box-sizing: border-box;
 }
 
+.a1a-heading-ss {
+  margin-bottom: 3em;
+  background: #fafafa;
+  padding: 2em;
+  border-radius: 8px;
+}
+.a1a-heading-ss p {
+  margin: 0;
+}
+
+.a1a-heading-text {
+  margin: 0 0 0.3em;
+  padding: 0;
+}
+
+.a1am-dashboard-block-user-nav {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  width: 100%;
+  padding: 1em 2em;
+  background: rgb(4, 27, 77);
+  background: linear-gradient(90deg, rgb(4, 27, 77) 0%, rgba(40, 126, 124, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#041b4d",endColorstr="#287e7c",GradientType=1);
+}
+
 .a1a-login-screen {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -342,8 +374,61 @@ ul.a1am-menu--sub-menu {
 .a1a-content-summary .course-entry .course-content p {
   margin-bottom: 1.5em;
 }
+.a1a-content-summary .course-entry .course-content .wp-block-embed__wrapper {
+  margin-bottom: 3em;
+}
 .a1a-content-summary .course-entry .course-content .wp-block-embed__wrapper iframe {
   border-radius: 8px;
   box-shadow: 0 5px 10px 0 rgba(1, 1, 1, 0.3);
   background: black;
+}
+.a1a-content-summary .course-entry .course-content blockquote.wp-block-quote {
+  background: black;
+  color: white;
+  margin: 1em 0 2em;
+  padding: 2em;
+  border-radius: 8px;
+  font-family: "Playwrite TZ", serif;
+}
+.a1a-content-summary .course-entry .course-content .wp-block-image .wp-element-caption {
+  border-bottom: solid 1px #eee;
+  padding-bottom: 0.5em;
+}
+.a1a-content-summary .course-entry .course-content .wp-block-image img {
+  border-radius: 8px;
+}
+
+.a1a-package-register {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  box-sizing: border-box;
+}
+.a1a-package-register .a1a-package-item {
+  border: solid 1px #eee;
+  border-radius: 8px;
+  background: #fafafa;
+  padding-bottom: 1em;
+}
+.a1a-package-register .a1a-package-item .banner img {
+  width: 100%;
+  border-radius: 8px;
+}
+.a1a-package-register .a1a-package-item .name, .a1a-package-register .a1a-package-item .desc, .a1a-package-register .a1a-package-item .__action {
+  padding: 0 1em;
+}
+.a1a-package-register .a1a-package-item .name {
+  font-weight: bold;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  color: #002577;
+}
+.a1a-package-register .a1a-package-item .__action button {
+  width: 100%;
+}
+.a1a-package-register .a1a-package-item .desc p {
+  margin-top: 0;
+  opacity: 0.6;
 }

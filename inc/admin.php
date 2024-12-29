@@ -15,10 +15,19 @@ function a1am_admin_custom_course_posts_columns($columns) {
 add_action( 'manage_a1a-course_posts_custom_column' , 'a1am_admin_custom_course_column', 10, 2 );
 function a1am_admin_custom_course_column( $column, $post_id ) {
   switch ( $column ) {
-
     case 'caurse_tax' :
       echo get_the_term_list( $post_id , 'course-tax' ); 
       break;
-
   }
 }
+
+function a1am_membership_register_role(){
+  add_role(
+    'a1a_membership',
+    __('A1A Membership', 'a1a'),
+    [
+      'read' => true,
+    ]
+  );
+}
+add_action( 'admin_init', 'a1am_membership_register_role', 4 );
