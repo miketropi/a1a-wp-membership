@@ -127,3 +127,20 @@ function a1am_routes_validate($routes_base) {
     return false;
   }
 }
+
+function a1am_role_labels($role) {
+  $labels = [
+    'a1a_membership' => [
+      'label' => __('Premium Pack ★', 'a1a'),
+      'background' => 'none',
+      'color' => '#00ff8b',
+    ],
+    'subscriber' => [
+      'label' => __('Free Pack', 'a1a'),
+      'background' => 'none',
+      'color' => '#d675b7',
+    ],
+  ];
+
+  return (isset($labels[$role]) ? $labels[$role] : null);
+}

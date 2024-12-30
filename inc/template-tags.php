@@ -105,9 +105,25 @@ function a1am_dashboard_page_heading_template($heading_text, $description = '', 
 }
 
 function a1am_nav_user_template() {
+  $current_user = wp_get_current_user();
+  $fullname = $current_user->user_firstname . ' ' . $current_user->user_lastname;
+  $user_role = $current_user->roles[0];
+  $label = a1am_role_labels($user_role);
   ?>
   <div class="a1am-dashboard-block-user-nav">
-    User...!
+    <div class="__user-inner">
+      <div class="__user-avar">
+        <img src="<?php echo get_avatar_url($current_user->ID); ?>" alt="avatar" />
+      </div>
+      <div class="__user-entry">
+      <?php if($label) : ?>
+        <div class="__user-current-pack">
+          <span style="background: <?php echo $label['background']; ?>; color: <?php echo $label['color']; ?>;"><?php echo $label['label']; ?></span>
+        </div>
+        <?php endif; ?>
+        <div class="__user-name"><?php echo $fullname; ?></div>
+      </div>
+    </div>
   </div>
   <?php
 }
