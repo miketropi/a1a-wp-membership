@@ -111,19 +111,21 @@ function a1am_nav_user_template() {
   $label = a1am_role_labels($user_role);
   ?>
   <div class="a1am-dashboard-block-user-nav">
-    <div class="__user-inner">
-      <div class="__user-avar">
-        <img src="<?php echo get_avatar_url($current_user->ID); ?>" alt="avatar" />
-      </div>
-      <div class="__user-entry">
-      <?php if($label) : ?>
-        <div class="__user-current-pack">
-          <span style="background: <?php echo $label['background']; ?>; color: <?php echo $label['color']; ?>;"><?php echo $label['label']; ?></span>
+    <a href="<?php echo a1am_root_uri() . '/me'; ?>">
+      <div class="__user-inner">
+        <div class="__user-avar">
+          <img src="<?php echo get_avatar_url($current_user->ID); ?>" alt="avatar" />
         </div>
-        <?php endif; ?>
-        <div class="__user-name"><?php echo $fullname; ?></div>
+        <div class="__user-entry">
+        <?php if($label) : ?>
+          <div class="__user-current-pack">
+            <span style="background: <?php echo $label['background']; ?>; color: <?php echo $label['color']; ?>;"><?php echo $label['label']; ?></span>
+          </div>
+          <?php endif; ?>
+          <div class="__user-name"><?php echo $fullname; ?></div>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
   <?php
 }

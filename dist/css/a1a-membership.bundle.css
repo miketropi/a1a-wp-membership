@@ -219,6 +219,10 @@ ul.a1am-menu--sub-menu {
   background: linear-gradient(90deg, rgb(4, 27, 77) 0%, rgba(40, 126, 124, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#041b4d",endColorstr="#287e7c",GradientType=1);
 }
+.a1am-dashboard-block-user-nav a {
+  color: white;
+  text-decoration: none;
+}
 .a1am-dashboard-block-user-nav .__user-inner {
   display: flex;
   gap: 10px;
@@ -247,6 +251,71 @@ ul.a1am-menu--sub-menu {
   letter-spacing: 1px;
   display: block;
   width: 100%;
+}
+
+.a1am-container-box {
+  width: 800px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.a1am-spacing1 {
+  padding-top: 1em;
+}
+
+.a1am-spacing2 {
+  padding-top: 2em;
+}
+
+.a1am-spacing3 {
+  padding-top: 3em;
+}
+
+.a1am-spacing4 {
+  padding-top: 4em;
+}
+
+.a1am-form {
+  width: 100%;
+}
+.a1am-form .a1am-field-2cols {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr;
+}
+.a1am-form label {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+.a1am-form label > span {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+.a1am-form label input[type=text],
+.a1am-form label input[type=number],
+.a1am-form label input[type=tel],
+.a1am-form label input[type=email],
+.a1am-form label textarea {
+  width: 100%;
+  margin-bottom: 0.2em;
+  box-sizing: border-box;
+}
+.a1am-form label input:-moz-read-only {
+  background: #fafafa;
+  color: #999;
+  cursor: no-drop;
+}
+.a1am-form label input:read-only {
+  background: #fafafa;
+  color: #999;
+  cursor: no-drop;
+}
+.a1am-form label textarea {
+  line-height: 1.5em;
 }
 
 .a1a-login-screen {

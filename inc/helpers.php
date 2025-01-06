@@ -57,9 +57,14 @@ function a1am_verify_account($user_id, $verify_code) {
   }
 }
 
-function a1am_nav_main_menu() {
+function a1am_root_uri() {
   $dashboard_page = get_field('a1a_dashboard_page', 'option');
   $dashboard_root = '/' . $dashboard_page->post_name;
+  return $dashboard_root;
+}
+
+function a1am_nav_main_menu() {
+  $dashboard_root = a1am_root_uri();
 
   return apply_filters( 'a1am:main_menu_hook', [
     'dashboard' => [
@@ -78,9 +83,15 @@ function a1am_nav_main_menu() {
       'icon' => a1am_icon('noti'),
     ],
     'support' =>[
-      'name' => 'Hỗ trợ',
+      'name' => 'Hỗ trợ', 
       'url' => $dashboard_root . '/support/',
       'icon' => a1am_icon('help'),
+    ],
+    'me' =>[
+      'name' => 'me',
+      'url' => $dashboard_root . '/me/',
+      'icon' => a1am_icon('help'),
+      'nav_item_display' => false, 
     ],
   ] );
 }

@@ -9,6 +9,10 @@ list($page) = get_query_var( 'routes_base' );
   <h4 class="heading-text"><?php _e('Main menu', 'a1a') ?></h4>
   <ul class="a1am-menu menu-main">
     <?php foreach($main_menu as $key => $item) : 
+    
+      if(isset($item['nav_item_display']) && $item['nav_item_display'] === false) {
+        continue;
+      } 
       $li_classes = ['a1am-menu__item', 'menu-' . $key, ($key == $page ? 'menu-item-active' : '')];  
     ?>
     <li class="<?php echo implode(' ', $li_classes); ?>">
