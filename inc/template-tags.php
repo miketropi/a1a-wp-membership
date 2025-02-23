@@ -129,3 +129,117 @@ function a1am_nav_user_template() {
   </div>
   <?php
 }
+
+function a1am_box_number_template($number, $label, $icon = '', $description = '') {
+  ?>
+  <div class="a1a-box-number">
+    <div class="a1a-box-number__inner" title="<?php echo $description; ?>">
+      <div class="a1a-box-number__number"><?php echo $number; ?></div>
+      <div class="a1a-box-number__label"><?php echo $label; ?></div>
+    </div>
+  </div>
+  <?php
+}
+
+function a1am_banner_template($args = []) {
+  $defaults = [
+    'sub_heading' => '',
+    'heading' => '',
+    'button_text' => '',
+    'button_url' => '',
+    'background_color' => '#002577', // Using dashboard accent color from variables
+    'background_image' => '',
+  ];
+
+  $args = wp_parse_args($args, $defaults);
+  ?>
+  <div class="a1a-banner" style="background-color: <?php echo esc_attr($args['background_color']); ?>">
+    <?php if($args['background_image']) : ?>
+      <div class="a1a-banner__background-image" style="background-image: url('<?php echo esc_url($args['background_image']); ?>')">
+      </div>
+    <?php endif; ?>
+    <div class="a1a-banner__inner">
+      <?php if($args['sub_heading']) : ?>
+        <div class="a1a-banner__sub-heading"><?php echo esc_html($args['sub_heading']); ?></div>
+      <?php endif; ?>
+
+      <?php if($args['heading']) : ?>
+        <h2 class="a1a-banner__heading"><?php echo esc_html($args['heading']); ?></h2>
+      <?php endif; ?>
+
+      <?php if($args['button_text'] && $args['button_url']) : ?>
+        <div class="a1a-banner__action">
+          <?php a1am_button_template([
+            'text' => $args['button_text'],
+            'url' => $args['button_url'],
+            'type' => 'primary',
+            'size' => 'medium',
+          ]); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+  </div>
+  <?php
+}
+
+function a1am_button_template($args = []) {
+  $defaults = [
+    'text' => '',
+    'url' => '#',
+    'icon' => '', // SVG string
+    'icon_position' => 'left', // left or right
+    'type' => 'primary', // primary, secondary, outline
+    'size' => 'medium', // small, medium, large
+    'class' => '', // Additional custom classes
+    'attributes' => [], // Additional HTML attributes as key-value pairs
+  ];
+
+  $args = wp_parse_args($args, $defaults);
+
+  // Build classes
+  $classes = ['a1a-button'];
+  $classes[] = 'a1a-button--' . $args['type'];
+  $classes[] = 'a1a-button--' . $args['size'];
+  if ($args['icon']) {
+    $classes[] = 'a1a-button--has-icon';
+    $classes[] = 'a1a-button--icon-' . $args['icon_position'];
+  }
+  if ($args['class']) {
+    $classes[] = $args['class'];
+  }
+
+  // Build attributes string
+  $attributes = '';
+  foreach ($args['attributes'] as $key => $value) {
+    $attributes .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
+  }
+  ?>
+  <a href="<?php echo esc_url($args['url']); ?>" 
+     class="<?php echo esc_attr(implode(' ', $classes)); ?>"
+     <?php echo $attributes; ?>>
+    <?php if ($args['icon'] && $args['icon_position'] === 'left') : ?>
+      <span class="a1a-button__icon"><?php echo $args['icon']; ?></span>
+    <?php endif; ?>
+    
+    <span class="a1a-button__text"><?php echo esc_html($args['text']); ?></span>
+    
+    <?php if ($args['icon'] && $args['icon_position'] === 'right') : ?>
+      <span class="a1a-button__icon"><?php echo $args['icon']; ?></span>
+    <?php endif; ?>
+  </a>
+  <?php
+}
+
+function a1am_spacing_template($size = 'medium') {
+  $sizes = [
+    'small' => '1rem',
+    'medium' => '2rem', 
+    'large' => '3rem',
+    'xlarge' => '4rem'
+  ];
+
+  $spacing_size = isset($sizes[$size]) ? $sizes[$size] : $sizes['medium'];
+  ?>
+  <div class="a1a-spacing" style="margin-bottom: <?php echo esc_attr($spacing_size); ?>"></div>
+  <?php
+}
