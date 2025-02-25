@@ -243,3 +243,41 @@ function a1am_spacing_template($size = 'medium') {
   <div class="a1a-spacing" style="margin-bottom: <?php echo esc_attr($spacing_size); ?>"></div>
   <?php
 }
+
+function a1am_message_template($message, $type = 'info') {
+  // Validate message type
+  $valid_types = ['success', 'info', 'danger'];
+  $type = in_array($type, $valid_types) ? $type : 'info';
+
+  // Define type-specific classes and icons
+  $type_classes = [
+    'success' => '__type-success',
+    'info' => '__type-info', 
+    'danger' => '__type-danger'
+  ];
+
+  ?>
+  <div class="a1am-message <?php echo $type_classes[$type]; ?>">
+    <div class="message-inner"><?php echo esc_html($message); ?></div>
+    <span class="__close" onClick="javascript: this.parentElement.remove()" title="remove">✕</span>
+  </div>
+  <?php
+}
+function a1am_change_password_template() {
+  ?>
+  <form class="a1am-form" method="post" id="a1am-change-password-form">
+    <label>
+      <span><?php _e('New Password*', 'a1a') ?></span>
+      <input type="password" name="password" id="password" required />
+    </label>
+    <label>
+      <span><?php _e('Confirm New Password*', 'a1a')?></span>
+      <input type="password" name="re-password" id="re-password" required />
+    </label>
+    <div class="action-buttons">
+      <input type="hidden" name="a1am_form_action" value="change_password">
+      <button class="button" type="submit">Update</button>
+    </div>
+  </form>
+  <?php
+}

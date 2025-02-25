@@ -1,0 +1,44 @@
+.notifications-list {
+  max-width: 800px;
+  margin: 0 auto;
+
+  .notification-group {
+    margin-bottom: 2rem;
+
+    .notification-date {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .notification-item {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+      .notification-title {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .notification-content {
+        color: #666;
+        margin-bottom: 0.5rem;
+      }
+
+      .notification-meta {
+        font-size: 0.9rem;
+        color: #999;
+      }
+    }
+  }
+}
+
+.notification-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}

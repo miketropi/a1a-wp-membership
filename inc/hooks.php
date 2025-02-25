@@ -52,9 +52,9 @@ function a1am_dashboard_custom_page_template($page_template) {
 }
 
 add_action( 'a1am:dashboard__nav', 'a1am_dashboard_logo_template', 8 );
+add_action( 'a1am:dashboard__nav', 'a1am_nav_user_template', 9 );
 add_action( 'a1am:dashboard__nav', 'a1am_nav_main_menu_template', 10 );
 add_action( 'a1am:dashboard__nav', 'a1am_nav_courses_menu_template', 15 );
-add_action( 'a1am:dashboard__nav', 'a1am_nav_user_template', 18 );
 
 // add_action( 'a1am:dashboard__entry', function() {
 //   print_r(get_query_var( 'routes_base' ));

@@ -6,6 +6,7 @@
     margin: 1em auto;
     padding-bottom: 2em;
     border-bottom: 1px solid #eee;
+    font-size: 18px;
 
     .course-content {
       p {
@@ -28,7 +29,7 @@
         margin: 1em 0 2em;
         padding: 2em;
         border-radius: $border-radius-base;
-        font-family: "Playwrite TZ", serif;
+        font-family: 'Courier New', Courier, monospace
       }
 
       .wp-block-image{
