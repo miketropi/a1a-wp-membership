@@ -19,4 +19,6 @@ $meta_content = get_field('meta_content', 'course-tax_' . $term->term_id);
 
 <div class="term-content">
   <?php echo $meta_content ?>
+
+  <?php a1am_courses_list_template($term->term_id); ?>
 </div>

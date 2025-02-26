@@ -79,5 +79,16 @@ if(isset($_POST['a1am_form_action']) && $_POST['a1am_form_action'] == 'change_pa
     <h2><?php _e('Đổi mật khẩu', 'a1am') ?></h2>
     <?php a1am_change_password_template() ?>
   </div>
+
+  <?php a1am_spacing_template('medium'); ?>
+  <hr />
+  <?php a1am_spacing_template('medium'); ?>
+
+  <?php a1am_button_template([
+    'text' => __('Đăng xuất tài khoản', 'a1am'),
+    'url' => wp_logout_url(home_url()),
+    'type' => 'dagerous',
+    'size' => 'medium',
+  ]) ?>
 </div>
 

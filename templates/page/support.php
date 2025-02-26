@@ -5,4 +5,13 @@ $description = __('Hãy liên hệ với chúng tôi ngay nếu bạn cần giú
 ?>
 <div class="support-container">
   <?php a1am_dashboard_page_heading_template($heading_text, $description); ?>
+
+  <?php a1am_contact_channel_template([
+    'telegram' => '#',
+    'discord' => '#',
+    'email' => '#',
+    'phone' => '#',
+    'heading' => 'Liên hệ với chúng tôi',
+    'description' => 'Chúng tôi luôn sẵn lòng hỗ trợ bạn.',
+  ]) ?>
 </div>

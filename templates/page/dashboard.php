@@ -11,7 +11,7 @@ $current_user_id = get_current_user_id();
     <?php a1am_banner_template([
         'sub_heading' => 'A1Academy Course',
         'heading' => __('Nơi bạn có thể học tập và phát triển bản thân trong lĩnh vực đầu tư tài chính, Crypto và Blockchain.', 'a1am'),
-        'button_text' => __('Xem thêm', 'a1a'),
+        'button_text' => __('Bắt đầu ngay', 'a1a'),
         'button_url' => '#',
         'background_color' => '#002577',
         'background_image' => 'https://i.pinimg.com/736x/06/f2/0c/06f20c7941a360ddf466581e0916186b.jpg',
@@ -32,7 +32,12 @@ $current_user_id = get_current_user_id();
       </div>
     </div>
 
+    
     <?php a1am_spacing_template('large'); ?>
-
+    
+    <div>
+      <h2><?php _e('Danh mục', 'a1a')?></h2>
+      <?php a1am_course_categories_grid_template(); ?>
+    </div>
     
 </div>

@@ -121,6 +121,7 @@ function a1am_nav_courses_menu() {
     $t->custom_url = $dashboard_root . '/section/' . $t->slug;
     $t->__courses = array_map(function($c) use ($dashboard_root) {
       $c->custom_url = $dashboard_root . '/course/' . $c->post_name;
+      $c->require_premium_role = get_field('require_premium_role', $c->ID);
       return $c;
     }, $courses);
     return $t;
@@ -291,4 +292,72 @@ function a1am_change_password($password, $re_password) {
   wp_mail($user_email, $subject, $body, $headers);
 
   return true;
+}
+
+function a1am_get_course_tax() {
+  $dashboard_root = a1am_root_uri();
+  $terms = get_terms(array(
+    'taxonomy' => 'course-tax',
+    'hide_empty' => true,
+    'orderby' => 'name',
+    'order' => 'ASC'
+  ));
+
+  if (is_wp_error($terms)) {
+    return array();
+  }
+
+  return array_map(function($t) use ($dashboard_root) {
+    $t->custom_url = $dashboard_root . '/section/' . $t->slug;
+    $t->banner = get_field('banner', 'course-tax_' . $t->term_id);
+    $t->meta_content = get_field('meta_content', 'course-tax_' . $t->term_id);
+    return $t;
+  }, $terms); 
+}
+
+function a1am_get_courses_by_tax_id($tax_id) {
+  $dashboard_root = a1am_root_uri();
+  
+  // Get posts with the specified taxonomy ID
+  $courses = get_posts([
+    'numberposts' => -1,
+    'post_type' => 'a1a-course',
+    'tax_query' => [
+      [
+        'taxonomy' => 'course-tax',
+        'field'    => 'term_id',
+        'terms'    => $tax_id,
+      ]
+    ],
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_status' => 'publish'
+  ]);
+
+  // Add custom URL to each course
+  return array_map(function($course) use ($dashboard_root) {
+    $course->custom_url = $dashboard_root . '/course/' . $course->post_name;
+    $course->require_premium_role = get_field('require_premium_role', $course->ID);
+    return $course;
+  }, $courses);
+}
+
+function a1am_check_post_in_term($post_slug, $term_id) {
+  // Get post ID from slug
+  $post = get_page_by_path($post_slug, OBJECT, 'a1a-course');
+  
+  if (!$post) {
+    return false;
+  }
+
+  // Get the terms associated with the post
+  $post_terms = wp_get_post_terms($post->ID, 'course-tax', array('fields' => 'ids'));
+
+  // Check if there was an error getting terms
+  if (is_wp_error($post_terms)) {
+    return false;
+  }
+
+  // Check if the term_id exists in post terms
+  return in_array($term_id, $post_terms);
 }
