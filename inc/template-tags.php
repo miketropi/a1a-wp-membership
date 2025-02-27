@@ -449,11 +449,74 @@ function a1am_upgrade_user_package_template($msg = '') {
 
 function a1am_search_icon_template() {
   ?>
-  <div class="a1am-search-handle">
+  <div class="a1am-search-handle" onclick="document.querySelector('.a1am-search-lightbox').classList.toggle('is-active')">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"></circle>
       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
+  </div>
+  <?php
+}
+
+function a1am_home_icon_template() {
+  ?>
+  <a href="<?php echo a1am_root_uri(); ?>" class="a1am-home-handle" aria-label="home">
+    <?php echo a1am_icon('home'); ?>
+  </a>
+  <?php
+}
+
+function a1am_toggle_menu_icon_template() {
+  ?>
+  <div class="a1am-toggle-menu-handle" onClick="document.body.classList.toggle('__menu-mobi-active')">
+    <span>M</span>
+    <span>E</span>
+    <span>N</span>
+    <span>U</span>
+  </div>
+  <?php
+}
+
+function a1am_tools_template() {
+  ?>
+  <div class="a1am-tools">
+    <?php a1am_home_icon_template();?>
+    <?php a1am_search_icon_template();?>
+    <?php a1am_toggle_menu_icon_template() ?>
+  </div>
+  <?php
+}
+
+function a1am_search_lightbox_template() {
+  ?>
+  <div class="a1am-search-lightbox">
+    <div class="a1am-search-lightbox__overlay"></div>
+    <div class="a1am-search-lightbox__container">
+      <div class="a1am-search-lightbox__header">
+        <form class="a1am-search-form" action="<?php echo a1am_root_uri(); ?>/search" method="GET">
+          <input type="text" 
+                 name="q" 
+                 placeholder="<?php esc_attr_e('Search courses...', 'a1a'); ?>"
+                 autocomplete="off"
+                 required>
+          <button type="submit" aria-label="<?php esc_attr_e('Search', 'a1a'); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
+        <button class="a1am-search-lightbox__close" aria-label="<?php esc_attr_e('Close search', 'a1a'); ?>" onclick="document.querySelector('.a1am-search-lightbox').classList.remove('is-active')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="a1am-search-lightbox__results">
+        <!-- Results will be loaded here dynamically -->
+      </div>
+    </div>
   </div>
   <?php
 }

@@ -190,6 +190,8 @@ ul.a1am-menu li.menu-item-active > ul {
   top: 0;
   height: 100vh;
   overflow: auto;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
 }
 @media (max-width: 768px) {
   .a1am-course-dashboard__nav {
@@ -205,6 +207,14 @@ ul.a1am-menu li.menu-item-active > ul {
 .a1am-course-dashboard__entry {
   background: #002577;
   padding: 1.5em;
+}
+
+@media (max-width: 768px) {
+  body.__menu-mobi-active .a1am-course-dashboard__nav {
+    visibility: visible;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
 }
 
 .a1a-course-dashboard-logo {
@@ -900,6 +910,73 @@ ul.a1am-menu li.menu-item-active > ul {
   color: #FFFFFF;
 }
 
+.a1am-tools {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  z-index: 999;
+  background: white;
+  border-radius: 50px;
+  padding: 10px;
+  line-height: 0;
+  box-shadow: 1px 2px 5px 0 rgba(1, 1, 1, 0.2);
+}
+.a1am-tools > * {
+  cursor: pointer;
+}
+.a1am-tools .a1am-home-handle,
+.a1am-tools .a1am-toggle-menu-handle {
+  display: none;
+}
+@media (max-width: 768px) {
+  .a1am-tools {
+    display: grid;
+    grid-template-columns: 30px 30px 30px;
+    width: -moz-max-content;
+    width: max-content;
+    gap: 36px;
+    bottom: 1em;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+  }
+  .a1am-tools > * {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .a1am-tools > *.a1am-home-handle {
+    display: flex !important;
+  }
+  .a1am-tools > *.a1am-toggle-menu-handle {
+    display: grid !important;
+  }
+  .a1am-tools > *:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -17px;
+    top: calc(50% - 4px);
+    height: 8px;
+    width: 2px;
+    background: #e6e6e6;
+  }
+}
+.a1am-tools .a1am-home-handle svg path {
+  fill: black;
+}
+
+.a1am-toggle-menu-handle {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 0;
+  align-items: center;
+}
+
 .a1a-login-screen {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -1154,15 +1231,88 @@ ul.a1am-menu li.menu-item-active > ul {
   color: #666;
 }
 
-.a1am-search-handle {
+.a1am-search-lightbox {
   position: fixed;
-  top: 2em;
-  right: 2em;
-  z-index: 999;
-  background: white;
-  border-radius: 50px;
-  padding: 10px;
-  line-height: 0;
-  box-shadow: 3px 3px 10px 0 rgba(1, 1, 1, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+}
+.a1am-search-lightbox.is-active {
+  display: block;
+}
+.a1am-search-lightbox__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.a1am-search-lightbox__container {
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.a1am-search-lightbox__header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.a1am-search-lightbox__close {
+  background: none;
+  border: none;
+  padding: 0.5rem;
   cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+.a1am-search-lightbox__close:hover {
+  color: #333;
+}
+.a1am-search-lightbox__results {
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.a1am-search-form {
+  flex: 1;
+  position: relative;
+}
+.a1am-search-form input[type=text] {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  box-sizing: border-box;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+.a1am-search-form input[type=text]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+.a1am-search-form button {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.a1am-search-form button:hover {
+  color: #007bff;
 }
