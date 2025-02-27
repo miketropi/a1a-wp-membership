@@ -10,6 +10,14 @@
     font-family: "League Spartan", serif;
     font-optical-sizing: auto;
     font-style: normal;
+
+    
+  }
+
+  h1, h2, h3, h4, h5, h6, p, a, button, label {
+    // @media(max-width: 768px) {
+    //   font-size: calc(0.75em + 1vmin);
+    // }
   }
 }
 
@@ -214,6 +222,10 @@ ul.a1am-menu {
   grid-template-columns: 300px calc(100% - 300px);
   max-width: 100%;
 
+  @media(max-width: 768px) {
+    grid-template-columns: 100%;
+  }
+
   > * {
     box-sizing: border-box;
   }
@@ -227,6 +239,16 @@ ul.a1am-menu {
     top: 0;
     height: 100vh;
     overflow: auto;
+
+    @media(max-width: 768px) {
+      visibility: hidden;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      z-index: 10;
+    }
   }
 
   &__entry {
@@ -554,6 +576,10 @@ ul.a1am-menu {
     margin: 0 0 1.5rem;
     font-weight: 700;
     color: white;
+
+    @media(max-width: 425px) {
+      font-size: 1.6em;
+    }
   }
 
   &__action {

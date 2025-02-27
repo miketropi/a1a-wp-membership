@@ -51,6 +51,8 @@ function a1am_dashboard_custom_page_template($page_template) {
   return $page_template;
 }
 
+add_action( 'a1am:dashboard__start', 'a1am_search_icon_template', 20 );
+
 add_action( 'a1am:dashboard__nav', 'a1am_dashboard_logo_template', 8 );
 add_action( 'a1am:dashboard__nav', 'a1am_nav_user_template', 9 );
 add_action( 'a1am:dashboard__nav', 'a1am_nav_main_menu_template', 10 );
