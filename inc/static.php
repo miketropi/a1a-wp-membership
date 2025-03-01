@@ -11,6 +11,7 @@ function a1am_enqueue_scripts() {
 
   wp_localize_script( 'a1am-js', 'A1AM_PHP_DATA', [
     'ajax_url' => admin_url('admin-ajax.php'),
+    'nonce' => wp_create_nonce('a1am_ajax_nonce'),
     'settings' => [
       'a1a_after_login_redirect_page' => get_field('a1a_after_login_redirect_page', 'option'),
     ],

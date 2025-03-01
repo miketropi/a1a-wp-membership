@@ -361,3 +361,43 @@ function a1am_check_post_in_term($post_slug, $term_id) {
   // Check if the term_id exists in post terms
   return in_array($term_id, $post_terms);
 }
+
+function a1am_search_courses($search_query, $posts_per_page = -1) {
+  $dashboard_root = a1am_root_uri();
+  
+  $args = array(
+    'post_type' => 'a1a-course',
+    'posts_per_page' => $posts_per_page,
+    'post_status' => 'publish',
+    'orderby' => 'date',
+    'order' => 'DESC',
+    's' => sanitize_text_field($search_query)
+  );
+
+  $query = new WP_Query($args);
+  
+  if (!$query->have_posts()) {
+    return array();
+  }
+
+  return array_map(function($post) use ($dashboard_root) {
+    $post->custom_url = $dashboard_root . '/course/' . $post->post_name;
+    $post->require_premium_role = get_field('require_premium_role', $post->ID);
+
+    // Get course terms/categories
+    $terms = wp_get_post_terms($post->ID, 'course-tax', array(
+      'fields' => 'all'
+    ));
+
+    if (!is_wp_error($terms)) {
+      $post->terms = array_map(function($term) use ($dashboard_root) {
+        $term->custom_url = $dashboard_root . '/section/' . $term->slug;
+        return $term;
+      }, $terms);
+    } else {
+      $post->terms = [];
+    }
+
+    return $post;
+  }, $query->posts);
+}

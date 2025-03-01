@@ -520,3 +520,39 @@ function a1am_search_lightbox_template() {
   </div>
   <?php
 }
+
+function a1am_search_posts_template($posts) {
+  if (empty($posts)) {
+    ?>
+    <div class="a1am-search-empty">
+      <p><?php _e('No results found', 'a1a'); ?></p>
+    </div>
+    <?php
+    return;
+  }
+
+  ?>
+  <div class="a1am-search-results">
+    <?php foreach ($posts as $index => $post) : ?>
+      <div class="a1am-search-result-item">
+        <a href="<?php echo $post->custom_url; ?>" class="a1am-search-result-item__inner">
+          <div class="a1am-search-result-item__content">
+            <h3 class="a1am-search-result-item__title">
+              <span class="__number"><?php echo $index + 1; ?>. </span>
+              <?php echo esc_html($post->post_title); ?>
+              <?php ($post->require_premium_role ? a1am_premium_tag_template() : ''); ?>
+            </h3>
+          </div>
+        </a>
+        <div class="a1am-search-result-item__terms">
+          <?php if (!empty($post->terms)) : ?>
+            <?php foreach ($post->terms as $term) : ?>
+              <span class="term-item"><?php echo esc_html($term->name); ?></span>
+            <?php endforeach; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+  <?php
+}

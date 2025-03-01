@@ -1192,6 +1192,106 @@ ul.a1am-menu li.menu-item-active > ul {
   opacity: 0.6;
 }
 
+.a1am-pricing-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+.a1am-pricing-table .pricing-column {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+.a1am-pricing-table .pricing-column:hover {
+  transform: translateY(-5px);
+}
+.a1am-pricing-table .pricing-column.premium {
+  border: 2px solid #002577;
+}
+.a1am-pricing-table .pricing-column.premium .package-header {
+  background: #002577;
+  color: #fff;
+}
+.a1am-pricing-table .pricing-column.premium .package-header h3 {
+  color: white;
+}
+.a1am-pricing-table .pricing-column .package-header {
+  padding: 2rem;
+  text-align: center;
+  background: #f8f9fa;
+}
+.a1am-pricing-table .pricing-column .package-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.a1am-pricing-table .pricing-column .package-header .price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+.a1am-pricing-table .pricing-column .package-header .price span {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+.a1am-pricing-table .pricing-column .package-header .package-type {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+.a1am-pricing-table .pricing-column .package-features {
+  padding: 2rem;
+}
+.a1am-pricing-table .pricing-column .package-features ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.a1am-pricing-table .pricing-column .package-features ul li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.a1am-pricing-table .pricing-column .package-features ul li .__icon {
+  display: inline-block;
+  width: 18px;
+  line-height: 0;
+}
+.a1am-pricing-table .pricing-column .package-action {
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+.a1am-pricing-table .pricing-column .package-action button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.a1am-pricing-table .pricing-column .package-action button.__primary {
+  background: #002577;
+  color: #fff;
+  border: none;
+}
+.a1am-pricing-table .pricing-column .package-action button.__primary:hover {
+  background: rgb(0, 21.1428571429, 68);
+}
+.a1am-pricing-table .pricing-column .package-action button.__secondary {
+  background: transparent;
+  border: 2px solid #002577;
+  color: #002577;
+}
+.a1am-pricing-table .pricing-column .package-action button.__secondary:hover {
+  background: #002577;
+  color: #fff;
+}
+
 .notifications-list {
   max-width: 800px;
   margin: 0 auto;
@@ -1315,4 +1415,74 @@ ul.a1am-menu li.menu-item-active > ul {
 }
 .a1am-search-form button:hover {
   color: #007bff;
+}
+
+.a1am-search-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+.a1am-search-empty p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.a1am-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.a1am-search-result-item {
+  border-bottom: 1px solid #eee;
+  padding: 0.5em 0;
+}
+.a1am-search-result-item:last-child {
+  border-bottom: none;
+}
+.a1am-search-result-item__inner {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+.a1am-search-result-item__inner:hover .a1am-search-result-item__title {
+  color: #002577;
+}
+.a1am-search-result-item__terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8em;
+}
+.a1am-search-result-item__terms .term-item {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: #f0f0f0;
+  border-radius: 999px;
+  color: #666;
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 0.25rem;
+  transition: all 0.2s ease;
+}
+.a1am-search-result-item__terms .term-item:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+.a1am-search-result-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.a1am-search-result-item__title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+.a1am-search-result-item__excerpt {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
 }

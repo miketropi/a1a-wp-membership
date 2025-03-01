@@ -1,4 +1,5 @@
 import './userLoginHandle';
+import './search';
 
 import { createRoot } from 'react-dom/client';
 import MembershipApp from './MembershipApp';

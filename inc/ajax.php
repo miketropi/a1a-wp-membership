@@ -77,3 +77,19 @@ function a1am_user_register_ajax() {
 		] );
 	}
 }
+
+add_action('wp_ajax_a1am_search_course_ajax', 'a1am_search_course_ajax');
+add_action('wp_ajax_nopriv_a1am_search_course_ajax', 'a1am_search_course_ajax');
+
+function a1am_search_course_ajax() {
+	$posts = a1am_search_courses($_POST['q'], 5);
+
+	ob_start();
+	a1am_search_posts_template($posts);
+	$content = ob_get_clean();
+
+	wp_send_json( [
+		'success' => true,
+		'content' => $content,
+	] );
+}

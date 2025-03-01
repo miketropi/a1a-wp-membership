@@ -106,9 +106,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _userLoginHandle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userLoginHandle */ "./src/userLoginHandle.js");
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _MembershipApp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MembershipApp */ "./src/MembershipApp.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search */ "./src/search.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_search__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _MembershipApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MembershipApp */ "./src/MembershipApp.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -119,13 +122,71 @@ __webpack_require__.r(__webpack_exports__);
   var MembershipInit = function MembershipInit() {
     var rootElem = document.getElementById('MEMBERSHIP-DASHBOARD-ROOT');
     if (!rootElem) return;
-    var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(rootElem);
-    root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MembershipApp__WEBPACK_IMPORTED_MODULE_2__["default"], {}));
+    var root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_2__.createRoot)(rootElem);
+    root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MembershipApp__WEBPACK_IMPORTED_MODULE_3__["default"], {}));
   };
   $(function () {
     MembershipInit();
   });
 })(window, jQuery);
+
+/***/ }),
+
+/***/ "./src/search.js":
+/*!***********************!*\
+  !*** ./src/search.js ***!
+  \***********************/
+/***/ (() => {
+
+;
+(function () {
+  'use strict';
+
+  var _A1AM_PHP_DATA = A1AM_PHP_DATA,
+    ajax_url = _A1AM_PHP_DATA.ajax_url,
+    nonce = _A1AM_PHP_DATA.nonce;
+  var searchInput = document.querySelector('form.a1am-search-form input[name=q]');
+  var searchTimeout;
+  if (searchInput) {
+    searchInput.addEventListener('input', function (e) {
+      // Clear previous timeout
+      if (searchTimeout) {
+        clearTimeout(searchTimeout);
+      }
+
+      // Set new timeout to avoid multiple requests
+      searchTimeout = setTimeout(function () {
+        var searchQuery = e.target.value.trim();
+
+        // Make AJAX request
+        fetch(ajax_url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: new URLSearchParams({
+            action: 'a1am_search_course_ajax',
+            nonce: nonce,
+            q: searchQuery
+          })
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          // Handle the response data here
+          if (data.success) {
+            // Update results on the page
+            var resultsContainer = document.querySelector('.a1am-search-lightbox__results');
+            if (resultsContainer) {
+              resultsContainer.innerHTML = data.content;
+            }
+          }
+        })["catch"](function (error) {
+          console.error('Search error:', error);
+        });
+      }, 500); // 500ms delay after typing stops
+    });
+  }
+})(window);
 
 /***/ }),
 
