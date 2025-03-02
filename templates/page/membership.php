@@ -22,7 +22,7 @@ $description = __('Cộng đồng và team A1A hoạt động với phương ch�
             </p>
           </div>
           <div class="package-action">
-              <button class="button __secondary">Get Started</button>
+              <!-- <button class="button __secondary">Get Started</button> -->
           </div>
       </div>
 
@@ -38,8 +38,7 @@ $description = __('Cộng đồng và team A1A hoạt động với phương ch�
             </p>
           </div>
           <div class="package-action">
-              <button id="web3-payment" data-amount="1">Pay with USDT</button>
-              <button class="button __primary">Upgrade Now</button>
+              <button id="web3-payment" class="button __primary">Upgrade Now</button>
           </div>
       </div>
   </div>

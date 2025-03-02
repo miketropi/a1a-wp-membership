@@ -564,209 +564,215 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 
-var abi = __webpack_require__(/*! ./abi.json */ "./src/abi.json");
-var RECIPIENT_ADDRESS = '0x0926B26Cd6014Bb6CD446Fb78ae2A3c64876412B';
-var ENVIRONMENTS = {
-  production: {
-    chainId: 1,
-    // Ethereum Mainnet
-    usdtAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7',
-    rpcUrl: 'https://mainnet.infura.io/v3/b88737e3056844edae4d5753b63dd6d3'
-  },
-  testnet: {
-    chainId: 11155111,
-    // Sepolia
-    usdtAddress: '0xaA8E23Fb1079EA71e0a56F48a2aA51851D8433D0',
-    //'0x7169D38820dfd117B3D6016CAbFb7d8D5B49DE1A', // USDT Sepolia Test
-    rpcUrl: 'https://sepolia.infura.io/v3/b88737e3056844edae4d5753b63dd6d3'
-  }
-};
-var web3 = new web3__WEBPACK_IMPORTED_MODULE_0__["default"](window.ethereum || web3__WEBPACK_IMPORTED_MODULE_0__["default"].givenProvider);
-function checkNetwork(_x) {
-  return _checkNetwork.apply(this, arguments);
-}
-function _checkNetwork() {
-  _checkNetwork = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(envType) {
-    var chainId, expectedChainId, networkName;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.next = 2;
-          return web3.eth.getChainId();
-        case 2:
-          chainId = _context2.sent;
-          expectedChainId = ENVIRONMENTS[envType].chainId;
-          if (!(Number(chainId) !== expectedChainId)) {
-            _context2.next = 7;
-            break;
-          }
-          networkName = envType === 'production' ? 'Ethereum Mainnet' : 'Sepolia';
-          throw new Error("Vui l\xF2ng chuy\u1EC3n sang ".concat(networkName));
-        case 7:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return _checkNetwork.apply(this, arguments);
-}
-function connectWallet() {
-  return _connectWallet.apply(this, arguments);
-}
-function _connectWallet() {
-  _connectWallet = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-    var accounts;
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
-        case 0:
-          if (window.ethereum) {
-            _context3.next = 3;
-            break;
-          }
-          alert('Vui lòng cài đặt MetaMask!');
-          return _context3.abrupt("return");
-        case 3:
-          _context3.prev = 3;
-          _context3.next = 6;
-          return window.ethereum.request({
-            method: 'eth_requestAccounts'
-          });
-        case 6:
-          _context3.next = 8;
-          return web3.eth.getAccounts();
-        case 8:
-          accounts = _context3.sent;
-          if (!(accounts.length === 0)) {
-            _context3.next = 11;
-            break;
-          }
-          throw new Error('Vui lòng mở khóa ví MetaMask');
-        case 11:
-          return _context3.abrupt("return", accounts[0]);
-        case 14:
-          _context3.prev = 14;
-          _context3.t0 = _context3["catch"](3);
-          console.error('Lỗi kết nối ví:', _context3.t0);
-          throw _context3.t0;
-        case 18:
-        case "end":
-          return _context3.stop();
-      }
-    }, _callee3, null, [[3, 14]]);
-  }));
-  return _connectWallet.apply(this, arguments);
-}
-function transferUSDT(_x2, _x3, _x4) {
-  return _transferUSDT.apply(this, arguments);
-}
-function _transferUSDT() {
-  _transferUSDT = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(envType, amount, recipient) {
-    var sender, USDT_ABI, usdtContract, amountInWei, balance, tx, gas, gasPrice, receipt;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
-        case 0:
-          _context4.prev = 0;
-          _context4.next = 3;
-          return checkNetwork(envType);
-        case 3:
-          _context4.next = 5;
-          return connectWallet();
-        case 5:
-          sender = _context4.sent;
-          if (sender) {
-            _context4.next = 8;
-            break;
-          }
-          return _context4.abrupt("return");
-        case 8:
-          // Init contract USDT
-          USDT_ABI = abi;
-          usdtContract = new web3.eth.Contract(USDT_ABI, ENVIRONMENTS[envType].usdtAddress);
-          console.log('usdtContract', usdtContract);
+(function (w) {
+  'use strict';
 
-          // Convert amount (USDT has 6 decimals)
-          amountInWei = web3.utils.toBigInt(amount * Math.pow(10, 6));
-          console.log('amountInWei', amountInWei);
-
-          // Check balance 
-          _context4.next = 15;
-          return usdtContract.methods.balanceOf(sender).call();
-        case 15:
-          balance = _context4.sent;
-          console.log('balance', balance);
-          if (!(web3.utils.toBigInt(balance) < web3.utils.toBigInt(amountInWei))) {
-            _context4.next = 19;
-            break;
-          }
-          throw new Error('Không đủ số dư USDT');
-        case 19:
-          console.log('Số dư USDT:', web3.utils.fromWei(balance, 'ether'));
-          // return;
-
-          // Create transaction
-          tx = usdtContract.methods.transfer(recipient, amountInWei.toString());
-          _context4.next = 23;
-          return tx.estimateGas({
-            from: sender
-          });
-        case 23:
-          gas = _context4.sent;
-          _context4.next = 26;
-          return web3.eth.getGasPrice();
-        case 26:
-          gasPrice = _context4.sent;
-          console.log('Gas:', gas);
-          console.log('Gas Price:', gasPrice);
-          console.log('Gas Price (Gwei):', web3.utils.fromWei(gasPrice, 'gwei'));
-          // Send transaction
-          _context4.next = 32;
-          return tx.send({
-            from: sender,
-            gas: gas,
-            gasPrice: gasPrice
-          });
-        case 32:
-          receipt = _context4.sent;
-          return _context4.abrupt("return", receipt.transactionHash);
-        case 36:
-          _context4.prev = 36;
-          _context4.t0 = _context4["catch"](0);
-          console.error("[".concat(envType.toUpperCase(), " Error]"), _context4.t0);
-          throw _context4.t0;
-        case 40:
-        case "end":
-          return _context4.stop();
-      }
-    }, _callee4, null, [[0, 36]]);
-  }));
-  return _transferUSDT.apply(this, arguments);
-}
-document.querySelector('#web3-payment').addEventListener('click', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var txHash;
-  return _regeneratorRuntime().wrap(function _callee$(_context) {
-    while (1) switch (_context.prev = _context.next) {
-      case 0:
-        _context.prev = 0;
-        _context.next = 3;
-        return transferUSDT('testnet', 10,
-        // Số lượng USDT
-        RECIPIENT_ADDRESS // Địa chỉ nhận
-        );
-      case 3:
-        txHash = _context.sent;
-        alert("Testnet TX: https://sepolia.etherscan.io/tx/".concat(txHash));
-        _context.next = 10;
-        break;
-      case 7:
-        _context.prev = 7;
-        _context.t0 = _context["catch"](0);
-        alert("L\u1ED7i Testnet: ".concat(_context.t0.message));
-      case 10:
-      case "end":
-        return _context.stop();
+  var abi = __webpack_require__(/*! ./abi.json */ "./src/abi.json");
+  var RECIPIENT_ADDRESS = '0x0926B26Cd6014Bb6CD446Fb78ae2A3c64876412B';
+  var buttonPayment = document.querySelector('#web3-payment');
+  if (!buttonPayment) return;
+  var ENVIRONMENTS = {
+    production: {
+      chainId: 1,
+      // Ethereum Mainnet
+      usdtAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7',
+      rpcUrl: 'https://mainnet.infura.io/v3/b88737e3056844edae4d5753b63dd6d3'
+    },
+    testnet: {
+      chainId: 11155111,
+      // Sepolia
+      usdtAddress: '0xaA8E23Fb1079EA71e0a56F48a2aA51851D8433D0',
+      //'0x7169D38820dfd117B3D6016CAbFb7d8D5B49DE1A', // USDT Sepolia Test
+      rpcUrl: 'https://sepolia.infura.io/v3/b88737e3056844edae4d5753b63dd6d3'
     }
-  }, _callee, null, [[0, 7]]);
-})));
+  };
+  var web3 = new web3__WEBPACK_IMPORTED_MODULE_0__["default"](window.ethereum || web3__WEBPACK_IMPORTED_MODULE_0__["default"].givenProvider);
+  function checkNetwork(_x) {
+    return _checkNetwork.apply(this, arguments);
+  }
+  function _checkNetwork() {
+    _checkNetwork = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(envType) {
+      var chainId, expectedChainId, networkName;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return web3.eth.getChainId();
+          case 2:
+            chainId = _context2.sent;
+            expectedChainId = ENVIRONMENTS[envType].chainId;
+            if (!(Number(chainId) !== expectedChainId)) {
+              _context2.next = 7;
+              break;
+            }
+            networkName = envType === 'production' ? 'Ethereum Mainnet' : 'Sepolia';
+            throw new Error("Vui l\xF2ng chuy\u1EC3n sang ".concat(networkName));
+          case 7:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    return _checkNetwork.apply(this, arguments);
+  }
+  function connectWallet() {
+    return _connectWallet.apply(this, arguments);
+  }
+  function _connectWallet() {
+    _connectWallet = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var accounts;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            if (window.ethereum) {
+              _context3.next = 3;
+              break;
+            }
+            alert('Vui lòng cài đặt MetaMask!');
+            return _context3.abrupt("return");
+          case 3:
+            _context3.prev = 3;
+            _context3.next = 6;
+            return window.ethereum.request({
+              method: 'eth_requestAccounts'
+            });
+          case 6:
+            _context3.next = 8;
+            return web3.eth.getAccounts();
+          case 8:
+            accounts = _context3.sent;
+            if (!(accounts.length === 0)) {
+              _context3.next = 11;
+              break;
+            }
+            throw new Error('Vui lòng mở khóa ví MetaMask');
+          case 11:
+            return _context3.abrupt("return", accounts[0]);
+          case 14:
+            _context3.prev = 14;
+            _context3.t0 = _context3["catch"](3);
+            console.error('Lỗi kết nối ví:', _context3.t0);
+            throw _context3.t0;
+          case 18:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3, null, [[3, 14]]);
+    }));
+    return _connectWallet.apply(this, arguments);
+  }
+  function transferUSDT(_x2, _x3, _x4) {
+    return _transferUSDT.apply(this, arguments);
+  }
+  function _transferUSDT() {
+    _transferUSDT = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(envType, amount, recipient) {
+      var sender, USDT_ABI, usdtContract, amountInWei, balance, tx, gas, gasPrice, receipt;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return checkNetwork(envType);
+          case 3:
+            _context4.next = 5;
+            return connectWallet();
+          case 5:
+            sender = _context4.sent;
+            if (sender) {
+              _context4.next = 8;
+              break;
+            }
+            return _context4.abrupt("return");
+          case 8:
+            // Init contract USDT
+            USDT_ABI = abi;
+            usdtContract = new web3.eth.Contract(USDT_ABI, ENVIRONMENTS[envType].usdtAddress);
+            console.log('usdtContract', usdtContract);
+
+            // Convert amount (USDT has 6 decimals)
+            amountInWei = web3.utils.toBigInt(amount * Math.pow(10, 6));
+            console.log('amountInWei', amountInWei);
+
+            // Check balance 
+            _context4.next = 15;
+            return usdtContract.methods.balanceOf(sender).call();
+          case 15:
+            balance = _context4.sent;
+            console.log('balance', balance);
+            if (!(web3.utils.toBigInt(balance) < web3.utils.toBigInt(amountInWei))) {
+              _context4.next = 19;
+              break;
+            }
+            throw new Error('Không đủ số dư USDT');
+          case 19:
+            console.log('Số dư USDT:', web3.utils.fromWei(balance, 'ether'));
+            // return;
+
+            // Create transaction
+            tx = usdtContract.methods.transfer(recipient, amountInWei.toString());
+            _context4.next = 23;
+            return tx.estimateGas({
+              from: sender
+            });
+          case 23:
+            gas = _context4.sent;
+            _context4.next = 26;
+            return web3.eth.getGasPrice();
+          case 26:
+            gasPrice = _context4.sent;
+            console.log('Gas:', gas);
+            console.log('Gas Price:', gasPrice);
+            console.log('Gas Price (Gwei):', web3.utils.fromWei(gasPrice, 'gwei'));
+            // Send transaction
+            _context4.next = 32;
+            return tx.send({
+              from: sender,
+              gas: 300000,
+              gasPrice: (BigInt(gasPrice) * 120n / 100n).toString() // 120% of the current gas price
+            });
+          case 32:
+            receipt = _context4.sent;
+            return _context4.abrupt("return", receipt.transactionHash);
+          case 36:
+            _context4.prev = 36;
+            _context4.t0 = _context4["catch"](0);
+            console.error("[".concat(envType.toUpperCase(), " Error]"), _context4.t0);
+            throw _context4.t0;
+          case 40:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 36]]);
+    }));
+    return _transferUSDT.apply(this, arguments);
+  }
+  document.querySelector('#web3-payment').addEventListener('click', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var txHash;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return transferUSDT('testnet', 20,
+          // Số lượng USDT  
+          RECIPIENT_ADDRESS // Địa chỉ nhận
+          );
+        case 3:
+          txHash = _context.sent;
+          alert("Testnet TX: https://sepolia.etherscan.io/tx/".concat(txHash));
+          _context.next = 10;
+          break;
+        case 7:
+          _context.prev = 7;
+          _context.t0 = _context["catch"](0);
+          alert("L\u1ED7i Testnet: ".concat(_context.t0.message));
+        case 10:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, null, [[0, 7]]);
+  })));
+})(window);
 
 /***/ }),
 
