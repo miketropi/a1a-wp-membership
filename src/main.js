@@ -1,5 +1,6 @@
 import './userLoginHandle';
 import './search';
+import './web3Payment';
 
 import { createRoot } from 'react-dom/client';
 import MembershipApp from './MembershipApp';

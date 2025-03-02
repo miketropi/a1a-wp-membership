@@ -41,6 +41,7 @@ add_action( 'plugins_loaded', function() {
 		/**
 		 * Inc 
 		 */
+		require_once(A1AM_DIR. '/inc/acf-options.php');
 		require_once(A1AM_DIR . '/inc/admin.php');
 		
 		require_once(A1AM_DIR . '/inc/shortcode.php');

@@ -7,10 +7,10 @@ $description = __('Hãy liên hệ với chúng tôi ngay nếu bạn cần giú
   <?php a1am_dashboard_page_heading_template($heading_text, $description); ?>
 
   <?php a1am_contact_channel_template([
-    'telegram' => '#',
-    'discord' => '#',
-    'email' => '#',
-    'phone' => '#',
+    'telegram' => get_field('a1am_telegram', 'option'),
+    'discord' => get_field('a1am_discord', 'option'),
+    'email' => get_field('a1am_email', 'option'),
+    'phone' => get_field('a1am_phone', 'option'),
     'heading' => 'Liên hệ với chúng tôi',
     'description' => 'Chúng tôi luôn sẵn lòng hỗ trợ bạn.',
   ]) ?>
