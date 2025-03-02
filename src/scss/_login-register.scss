@@ -3,8 +3,16 @@
   grid-template-columns: 50% 50%;
   height: 100vh;
 
+  @media(max-width: 1059px) {
+    grid-template-columns: 100%;
+  }
+
   .__image-preview {
     position: relative;
+
+    @media(max-width: 1059px) {
+      display: none;
+    }
 
     .__image-layer {
       position: absolute;

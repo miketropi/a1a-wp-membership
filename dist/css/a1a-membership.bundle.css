@@ -982,8 +982,18 @@ ul.a1am-menu li.menu-item-active > ul {
   grid-template-columns: 50% 50%;
   height: 100vh;
 }
+@media (max-width: 1059px) {
+  .a1a-login-screen {
+    grid-template-columns: 100%;
+  }
+}
 .a1a-login-screen .__image-preview {
   position: relative;
+}
+@media (max-width: 1059px) {
+  .a1a-login-screen .__image-preview {
+    display: none;
+  }
 }
 .a1a-login-screen .__image-preview .__image-layer {
   position: absolute;
